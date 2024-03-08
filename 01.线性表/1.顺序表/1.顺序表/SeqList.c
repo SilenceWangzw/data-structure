@@ -12,8 +12,8 @@ void SeqListInit(SL* ps)
 		printf("申请失败\n");
 		exit(-1);
 	}
-	ps->capacity = 4;
 	ps->size = 0;
+	ps->capacity = 4;
 }
 
 
@@ -21,9 +21,9 @@ void SeqListInit(SL* ps)
 void SeqListCheckCapacity(SL* ps)
 {
 	assert(ps);
-	if (ps->size >= ps->capacity)
+	if (ps->size >= ps->capacity) 
 	{
-		ps->capacity = ps->capacity * 2; //将容量扩大两倍
+		ps->capacity = ps->capacity * 2;
 		ps->a = (SLDataType*)realloc(ps->a, sizeof(SLDataType) * ps->capacity);
 		if (ps->a == NULL)
 		{
@@ -37,7 +37,6 @@ void SeqListCheckCapacity(SL* ps)
 //打印顺序表
 void SeqListPrint(SL* ps)
 {
-	assert(ps);
 	for (int i = 0; i < ps->size; i++)
 	{
 		printf("%d ", ps->a[i]);
@@ -51,7 +50,7 @@ void SeqListPushBack(SL* ps, SLDataType x)
 {
 	assert(ps);
 	SeqListCheckCapacity(ps);
-	ps->a[ps->size] = x; //直接在表尾插入
+	ps->a[ps->size] = x;//直接在表尾插入
 	ps->size++;
 }
 
@@ -69,15 +68,12 @@ void SeqListPushFront(SL* ps, SLDataType x)
 {
 	assert(ps);
 	SeqListCheckCapacity(ps);
-	int end = ps->size - 1;
-	while (end >= 0)
+	for (int i = ps->size - 1; i >= 0; i--)
 	{
-		ps->a[end + 1] = ps->a[end];
-		end--;
+		ps->a[i + 1] = ps->a[i];
 	}
 	ps->a[0] = x;
 	ps->size++;
-
 }
 
 
@@ -85,26 +81,26 @@ void SeqListPushFront(SL* ps, SLDataType x)
 void SeqListPopFront(SL* ps)
 {
 	assert(ps);
-	int start = 0;
-	while (start < ps->size - 1)
+	for (int i = 0; i < ps->size - 1; i++)
 	{
-		ps->a[start] = ps->a[start + 1];
-		start++;
+		ps->a[i] = ps->a[i + 1];
 	}
 	ps->size--;
 }
 
 
-//任意位置插入
+//任意位置插入(pos为要删除元素的下标)
 void SeqListInsert(SL* ps, int pos, SLDataType x)
 {
 	assert(ps);
-	void SeqListCheckCapacity(ps);
-	for (int i = ps->size - 1; i >= pos - 1; i--)
+	SeqListCheckCapacity(ps);
+	int end = ps->size - 1;
+	while (end >= pos)
 	{
-		ps->a[i + 1] = ps->a[i];
+		ps->a[end + 1] = ps->a[end];
+		end--;
 	}
-	ps->a[pos - 1] = x;
+	ps->a[pos] = x;
 	ps->size++;
 }
 
@@ -113,9 +109,28 @@ void SeqListInsert(SL* ps, int pos, SLDataType x)
 void SeqListErase(SL* ps, int pos)
 {
 	assert(ps);
-	for (int i = pos - 1; i < ps->size; i++)
+	int i = pos;
+	while (i < ps->size - 1)
 	{
 		ps->a[i] = ps->a[i + 1];
+		i++;
 	}
 	ps->size--;
+
 }
+
+
+//查找元素，并返回它的下标，找不到则返回-1
+int SeqListFind(SL* ps, SLDataType x)
+{
+	assert(ps);
+	for (int i = 0; i < ps->size; i++)
+	{
+		if (ps->a[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
