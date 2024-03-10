@@ -1,85 +1,36 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"Slist.h"
 
-//打印
-void SlistPrint(SlistNode* phead)
+//打印链表
+void SListPrint(SLTNode* phead)
 {
-	//不需要assert，因为有可能是空链表
-	SlistNode* cur = phead;
+	SLTNode* cur = phead;
 	while (cur != NULL)
 	{
 		printf("%d->", cur->data);
-		cur = cur->next;
+		cur = cur->next;//指针往后移一个结点
 	}
 	printf("NULL\n");
 }
 
-//申请结点
-SlistNode* BuySlistNode(SListDataType x)
-{
-	SlistNode* newNode = (SlistNode*)malloc(sizeof(SListDataType) * 1);
-	if (newNode == NULL)
-	{
-		printf("申请结点失败\n");
-		exit(-1);
-	}
-	newNode->data = x;
-	newNode->next = NULL;
-	return newNode;
-}
 
 //尾插
-void SlistPushBack(SlistNode** pphead, SListDataType x)
+void SlistPushBack(SLTNode** phead, SLTDataType x)
 {
-	SlistNode* newNode = BuySlistNode(x);
-
-	if (*pphead == NULL)
+	SLTNode* newNode = (SLTNode*)malloc(sizeof(SLTNode));//申请新结点
+	newNode->data = x;
+	newNode->next = NULL;
+	if (*phead == NULL)//如果链表为空
 	{
-		*pphead = newNode;
+		*phead = newNode;
 	}
-	else
+	else 
 	{
-		SlistNode* tail = *pphead;
-		while (tail->next != NULL)//找尾部
+		SLTNode* tail = *phead;
+		while (tail->next != NULL)//找到尾结点，尾结点的标志是next为空
 		{
 			tail = tail->next;
 		}
 		tail->next = newNode;
 	}
-	newNode->data = x;
-	newNode->next = NULL;
-	
-
-}
-
-//尾删
-void SlistPopBack(SlistNode** pphead)
-{
-	//1.空
-	//2.一个结点
-	//3.一个以上结点
-	if (*pphead == NULL)
-	{
-		return;
-	}
-	else if ((*pphead)->next == NULL)
-	{
-		free(*pphead);
-		*pphead = NULL;
-	}
-	else
-	{
-		SlistNode* prev = NULL; //保存tail的前一个结点
-		SlistNode* tail = *pphead;
-		while (tail->next != NULL)
-		{
-			prev = tail;
-			tail = tail->next;
-		}
-		free(tail);
-		prev->next = NULL;
-	}
-	
-
-	
 }

@@ -1,29 +1,18 @@
 #pragma once
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
-typedef int SListDataType;
-//结点
+typedef int SLTDataType;
 typedef struct SlistNode
 {
-	SListDataType data;
-	struct SlistNode* next;
-}SlistNode;
+	SLTDataType data;//数据域
+	struct SlistNode* next;//指针域
+}SLTNode;
+
+
+//打印链表
+void SListPrint(SLTNode* phead);
 
 //尾插
-void SlistPushBack(SlistNode** pphead, SListDataType x);
-
-//尾删
-void SlistPopBack(SlistNode** pphead);
-
-//头插
-void SlistPushFront(SlistNode* phead, SListDataType x);
-
-//头删
-void SlistPopFront(SlistNode* phead);
-
-//打印
-void SlistPrint(SlistNode* head);
-
-
-void SlistSize(SlistNode* head);
+void SlistPushBack(SLTNode* phead, SLTDataType x);

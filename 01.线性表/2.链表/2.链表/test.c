@@ -1,20 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"Slist.h"
 
+
+void TestSlist1()
+{
+	SLTNode* plist = NULL;//初始链表为空
+	SlistPushBack(&plist, 1);
+	SlistPushBack(&plist, 2);
+	SlistPushBack(&plist, 3);
+	SlistPushBack(&plist, 4);
+	SListPrint(plist);
+}
+
 int main()
 {
-	SlistNode* phead = NULL;//头指针
-
-	SlistPushBack(&phead, 1);
-	SlistPushBack(&phead, 2);
-	SlistPushBack(&phead, 3);
-	SlistPushBack(&phead, 4);
-	SlistPrint(phead);
-
-
-	SlistPopBack(&phead); 
-	SlistPopBack(&phead);
-	SlistPrint(phead);
-
+	TestSlist1();
 	return 0;
 }
