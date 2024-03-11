@@ -16,3 +16,6 @@ void SListPrint(SLTNode* phead);
 
 //Î²²å
 void SlistPushBack(SLTNode* phead, SLTDataType x);
+
+//Í·²å
+void SlistPushFront(SLTNode** phead, SLTDataType x);

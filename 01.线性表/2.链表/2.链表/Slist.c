@@ -13,13 +13,23 @@ void SListPrint(SLTNode* phead)
 	printf("NULL\n");
 }
 
+//创建结点
+SLTDataType* BuyListNode(SLTDataType x)
+{
+	SLTNode* newNode = (SLTDataType*)malloc(sizeof(SLTDataType));
+	if (newNode == NULL)
+	{
+
+	}
+	newNode->data = x;
+	newNode->next = NULL;
+	return newNode;
+}
 
 //尾插
 void SlistPushBack(SLTNode** phead, SLTDataType x)
 {
-	SLTNode* newNode = (SLTNode*)malloc(sizeof(SLTNode));//申请新结点
-	newNode->data = x;
-	newNode->next = NULL;
+	SLTNode* newNode = BuyListNode(x);
 	if (*phead == NULL)//如果链表为空
 	{
 		*phead = newNode;
@@ -33,4 +43,13 @@ void SlistPushBack(SLTNode** phead, SLTDataType x)
 		}
 		tail->next = newNode;
 	}
+}
+
+
+//头插
+void SlistPushFront(SLTNode** phead, SLTDataType x)
+{
+	SLTNode* newNode = BuyListNode(x);
+	newNode->next = *phead;
+	(*phead) = newNode;
 }

@@ -10,6 +10,12 @@ void TestSlist1()
 	SlistPushBack(&plist, 3);
 	SlistPushBack(&plist, 4);
 	SListPrint(plist);
+
+	SlistPushFront(&plist, 1);
+	SlistPushFront(&plist, 2);
+	SlistPushFront(&plist, 3);
+	SlistPushFront(&plist, 4);
+	SListPrint(plist);
 }
 
 int main()
