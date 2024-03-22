@@ -1,55 +1,51 @@
-#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS 1
 #include"SeqList.h"
 
-//测试顺序表的插入删除操作
-void TestSeqListPushPop()
-{
-	SeqList s;
 
-	//初始化
-	SeqListInit(&s);
+void TestSeqListBack()
+{
+	SL sl;
+	SeqListInit(&sl);
 
 	//尾插
-	SeqListPushBack(&s, 1);
-	SeqListPushBack(&s, 2);
-	SeqListPushBack(&s, 3);
-	SeqListPushBack(&s, 4);
-	SeqListPushBack(&s, 5);
-	SeqListPushBack(&s, 6);
-	SeqListPrint(&s);
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPushBack(&sl, 5);
+	SeqListPrint(&sl);
 
 	//尾删
-	SeqListPopBack(&s);
-	SeqListPopBack(&s);
-	SeqListPrint(&s);
+	SeqListPopBack(&sl);
+	SeqListPopBack(&sl);
+	SeqListPrint(&sl);
+}
+
+
+void TestSeqListFront()
+{
+	SL sl;
+	SeqListInit(&sl);
 
 	//头插
-	SeqListPushFront(&s, 0);
-	SeqListPushFront(&s, -1);
-	SeqListPushFront(&s, -2);
-	SeqListPrint(&s);
+	SeqListPushFront(&sl, 5);
+	SeqListPushFront(&sl, 4);
+	SeqListPushFront(&sl, 3);
+	SeqListPushFront(&sl, 2);
+	SeqListPushFront(&sl, 1);
+	SeqListPrint(&sl);
 
 	//头删
-	SeqListPopFront(&s);
-	SeqListPopFront(&s);
-	SeqListPrint(&s);
-
-	//任意位置插入
-	SeqListInsert(&s, 5, 5);
-	SeqListPrint(&s);
-
-	//任意位置删除
-	SeqListErase(&s, 0);
-	SeqListPrint(&s);
-
-	//查找
-	int ret = SeqListFind(&s, 5);
-	printf("%d\n", ret);
+	SeqListPopFront(&sl);
+	SeqListPopFront(&sl);
+	SeqListPopFront(&sl);
+	SeqListPrint(&sl);
 }
 
 int main()
 {
-	TestSeqListPushPop();
 
+	TestSeqListFront();
+	
 	return 0;
 }
