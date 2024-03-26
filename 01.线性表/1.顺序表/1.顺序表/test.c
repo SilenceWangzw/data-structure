@@ -42,10 +42,29 @@ void TestSeqListFront()
 	SeqListPrint(&sl);
 }
 
+
+void TestSeqListInsert()
+{
+	SL sl;
+	SeqListInit(&sl);
+
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPrint(&sl);
+
+
+	SeqListErase(&sl, 0);
+	SeqListPrint(&sl);
+
+	
+}
+
 int main()
 {
 
-	TestSeqListFront();
+	TestSeqListInsert();
 	
 	return 0;
 }

@@ -47,3 +47,12 @@ void SeqListPushFront(SL* ps, SLDataType x);
 
 //头删
 void SeqListPopFront(SL* ps);
+
+//查找
+int SeqListFind(SL* ps, SLDataType x);
+
+//指定pos下标位置插入
+void SeqListInsert(SL* ps, int pos, SLDataType x);
+
+//指定pos下标位置删除
+void SeqListErase(SL* ps, int pos);

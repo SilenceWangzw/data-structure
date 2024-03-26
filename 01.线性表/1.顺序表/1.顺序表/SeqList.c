@@ -87,3 +87,46 @@ void SeqListPopFront(SL* ps)
 	}
 	ps->size--;
 }
+
+
+//查找
+int SeqListFind(SL* ps, SLDataType x)
+{
+	for (int i = 0; i < ps->size; i++)
+	{
+		if (ps->data[i] == x)
+		{
+			return i;//返回下标
+		}
+	}
+	return -1;
+}
+
+
+//指定pos下标位置插入
+void SeqListInsert(SL* ps, int pos, SLDataType x)
+{
+	assert(ps);
+	assert(pos >= 0 && pos <= ps->size);
+	SeqListCheckCapacity(ps);
+	//挪动数据
+	for (int end = ps->size - 1; end >= pos; end--)
+	{
+		ps->data[end + 1] = ps->data[end];
+	}
+	ps->data[pos] = x;
+	ps->size++;
+}
+
+
+//指定pos下标位置删除
+void SeqListErase(SL* ps, int pos)
+{
+	assert(ps);
+	assert(pos >= 0 && pos <= ps->size - 1);
+	for (int begin = pos; begin < ps->size - 1; begin++)
+	{
+		ps->data[begin] = ps->data[begin + 1];
+	}
+	ps->size--;
+}
