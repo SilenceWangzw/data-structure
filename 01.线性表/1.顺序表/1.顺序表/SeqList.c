@@ -54,6 +54,7 @@ void SeqListPushBack(SL* ps, SLDataType x)
 //尾删
 void SeqListPopBack(SL* ps)
 {
+	assert(ps);
 	assert(ps->size > 0);
 	ps->size--;
 }
@@ -78,6 +79,7 @@ void SeqListPushFront(SL* ps, SLDataType x)
 //头删
 void SeqListPopFront(SL* ps)
 {
+	assert(ps);
 	assert(ps->size > 0);
 	int begin = 0;
 	while (begin < ps->size - 1)
@@ -89,9 +91,11 @@ void SeqListPopFront(SL* ps)
 }
 
 
-//查找
+//查找元素并返回下标
 int SeqListFind(SL* ps, SLDataType x)
 {
+	assert(ps);
+	assert(ps->size > 0);
 	for (int i = 0; i < ps->size; i++)
 	{
 		if (ps->data[i] == x)
@@ -103,13 +107,12 @@ int SeqListFind(SL* ps, SLDataType x)
 }
 
 
-//指定pos下标位置插入
+//任意指定pos下标位置插入
 void SeqListInsert(SL* ps, int pos, SLDataType x)
 {
 	assert(ps);
 	assert(pos >= 0 && pos <= ps->size);
 	SeqListCheckCapacity(ps);
-	//挪动数据
 	for (int end = ps->size - 1; end >= pos; end--)
 	{
 		ps->data[end + 1] = ps->data[end];
@@ -119,14 +122,24 @@ void SeqListInsert(SL* ps, int pos, SLDataType x)
 }
 
 
-//指定pos下标位置删除
+//任意指定位置删除
 void SeqListErase(SL* ps, int pos)
 {
 	assert(ps);
-	assert(pos >= 0 && pos <= ps->size - 1);
-	for (int begin = pos; begin < ps->size - 1; begin++)
+	assert(pos >= 0 && pos < ps->size);
+	for (int begin = pos; begin < ps->size-1; begin++)
 	{
 		ps->data[begin] = ps->data[begin + 1];
 	}
 	ps->size--;
+}
+
+
+//销毁
+void SeqListDestory(SL* ps)
+{
+	free(ps->data);
+	ps->data = NULL;
+	ps->size = 0;
+	ps->capacity = 0;
 }
