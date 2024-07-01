@@ -64,3 +64,89 @@ void SeListPushFront(SeqList* ps, SLDataType x)
 	ps->data[0] = x;
 	ps->size++;
 }
+
+
+//尾删
+void SeqListPopBack(SeqList* ps)
+{
+	assert(ps->size > 0);
+	ps->size--;
+}
+
+
+//头删
+void SeqListPopFront(SeqList* ps)
+{
+	assert(ps->size > 0);
+	int start = 0;
+	while (start < ps->size - 1)
+	{
+		ps->data[start] = ps->data[start + 1];
+		start++;
+	}
+	ps->size--;
+}
+
+
+//指定pos位置插入
+void SeqListInsert(SeqList* ps, int pos, SLDataType x)
+{
+	assert(pos <= ps->size);
+	SeqListCheckCapacity(ps);
+	
+	int end = ps->size - 1;
+	while (end >= pos)
+	{
+		ps->data[end + 1] = ps->data[end];
+		end--;
+	}
+	ps->data[pos] = x;
+	ps->size++;
+}
+
+
+//指定pos位置删除
+void SeqListDelete(SeqList* ps, int pos)
+{
+	assert(ps->size > 0);
+	int start = pos;
+	while (start < ps->size - 1)
+	{
+		ps->data[start] = ps->data[start + 1];
+		start++;
+	}
+	ps->size--;
+	
+}
+
+
+//查找
+int SeqListFind(SeqList* ps, SLDataType x)
+{
+	for (int i = 0; i < ps->size; i++)
+	{
+		if (ps->data[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+//修改
+int SeqListModify(SeqList* ps, int pos, SLDataType x)
+{
+	assert(pos < ps->size);
+	ps->data[pos] = x;
+}
+
+
+//销毁
+void SeqListDestory(SeqList* ps)
+{
+	free(ps->data);
+	ps->data = NULL;
+	ps->size = 0;
+	ps->capacity = 0;
+}

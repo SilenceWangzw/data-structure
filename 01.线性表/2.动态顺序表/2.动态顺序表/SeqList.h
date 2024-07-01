@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<assert.h>
 
 //2.动态顺序表
 typedef int SLDataType;
@@ -28,4 +29,23 @@ void SeqListPushBack(SeqList* ps, SLDataType x);
 //头插
 void SeListPushFront(SeqList* ps, SLDataType x);
 
+//尾删
+void SeqListPopBack(SeqList* ps);
 
+//头删
+void SeqListPopFront(SeqList* ps);
+
+//指定pos位置插入
+void SeqListInsert(SeqList* ps,int pos,SLDataType x);
+
+//指定pos位置删除
+void SeqListDelete(SeqList* ps, int pos);
+
+//查找
+int SeqListFind(SeqList* ps, SLDataType x);
+
+//修改
+int SeqListModify(SeqList* ps, int pos, SLDataType x);
+
+//销毁
+void SeqListDestory(SeqList* ps);
