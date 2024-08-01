@@ -2,21 +2,21 @@
 #include"Slist.h"
 
 
-void TestSlist1()
-{
-	SlistNode* phead = NULL;//申请头结点
-	SlistPushBack(&phead, 1);
-	SlistPushBack(&phead, 2);
-	SlistPushBack(&phead, 3);
-	SlistPushBack(&phead, 4);
-
-	SlistPrint(&phead);
-
-}
-
-
 int main()
 {
-	TestSlist1();
+	SListNode* phead = NULL;//头指针
+
+
+	SListPushBack(&phead, 1);
+	SListPushBack(&phead, 2);
+	SListPushBack(&phead, 3);
+	SListPushBack(&phead, 4);
+	SListPrint(phead);
+
+	SListPopBack(&phead);
+	SListPopBack(&phead);
+	SListPopBack(&phead);
+	SListPrint(phead);
+
 	return 0;
 }

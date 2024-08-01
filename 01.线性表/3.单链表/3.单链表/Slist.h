@@ -3,16 +3,28 @@
 #include<stdlib.h>
 
 
-typedef int SLTDataType;
-typedef struct SlistNode
+typedef int SListDataType;
+typedef struct SListNode
 {
-	SLTDataType data;//数据域
-	struct SlistNode* next;//指针域 --> 指向下一个结点
+	SListDataType data;//数据域
+	struct SListNode* next;//指针域
+}SListNode;
 
-}SlistNode;
-
-//打印
-void SlistPrint(SlistNode** phead);
 
 //尾插
-void SlistPushBack(SlistNode** phead, SLTDataType x);
+void SListPushBack(SListNode** phead, SListDataType x);
+
+//尾删
+void SListPopBack(SListNode** phead);
+
+//头插
+void SListPushFront(SListNode** phead, SListDataType x);
+
+//头删
+void SListPopFront(SListNode** phead);
+
+//打印
+void SListPrint(SListNode* phead);
+
+//申请结点
+SListNode* BuySListNode(SListDataType x);
