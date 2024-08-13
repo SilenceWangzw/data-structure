@@ -41,3 +41,21 @@ int find(SeqList* list, ElemType x);
 
 //求表长
 int length(SeqList* list);
+
+//按位置删除元素(数组下标)
+void delete_pos(SeqList* list, int pos);
+
+//按值删除
+void delete_val(SeqList* list, ElemType x);
+
+//排序
+void sort(SeqList* list);
+
+//逆置顺序表
+void reverse(SeqList* list);
+
+//清除顺序表
+void clear(SeqList* list);
+
+//摧毁顺序表
+void destory(SeqList* list);

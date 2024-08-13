@@ -1,4 +1,5 @@
 ﻿  SeqList.cpp
+D:\Github_Code\data-structure\01.线性表\1.顺序表\1.顺序表\SeqList.cpp(166,42): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
   main.cpp
   正在生成代码...
-  1.顺序表.vcxproj -> D:\Code\数据结构\1.线性表\1.顺序表\x64\Debug\1.顺序表.exe
+  1.顺序表.vcxproj -> D:\Github_Code\data-structure\01.线性表\1.顺序表\x64\Debug\1.顺序表.exe

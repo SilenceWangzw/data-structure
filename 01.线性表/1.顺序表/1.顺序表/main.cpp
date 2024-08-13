@@ -19,8 +19,8 @@ int main()
 		printf("*****  [5]pop_front   [6]insert_pos  *****\n");
 		printf("*****  [7]find        [8]length      *****\n");
 		printf("*****  [9]delete_pos  [10]delete_val *****\n");
-		printf("*****  [11]sort       [11]reverse    *****\n");
-		printf("*****  [12]clear      [14]destory    *****\n");
+		printf("*****  [11]sort       [12]reverse    *****\n");
+		printf("*****  [13]clear      [14*]destory    *****\n");
 		printf("*****  [0] quit_system               *****\n");
 		printf("******************************************\n");
 		printf("请选择:> ");
@@ -76,12 +76,34 @@ int main()
 		case 8:
 			printf("顺序表的长度为:> %d\n", length(&mylist));
 			break;
+		case 9:
+			printf("请输入要删除的位置:> ");
+			scanf("%d", &pos);
+			delete_pos(&mylist, pos);
+			break;
+		case 10:
+			printf("请输入要删除的数据:> ");
+			scanf("%d", &Item);
+			delete_val(&mylist, Item);
+			break;
+		case 11:
+			sort(&mylist);
+			break;
+		case 12:
+			reverse(&mylist);
+			break;
+		case 13:
+			clear(&mylist);
+			break;
+		case 14:
+			destory(&mylist);
+			break;
 		default:
 			printf("输入的选择错误，请重新输入\n");
 			break;
 		}
 	}
 
-
+	destory(&mylist);
 	return 0;
 }

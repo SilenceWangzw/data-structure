@@ -121,3 +121,91 @@ int length(SeqList* list)
 {
 	return list->size;
 }
+
+
+
+//按位置删除元素
+void delete_pos(SeqList* list, int pos)
+{
+	if (pos < 0 || pos >= list->size)
+	{
+		printf("删除数据的位置非法，不能删除数据\n");
+		return;
+	}
+	int i = 0;
+	for (i = pos; i < list->size; i++)
+	{
+		list->base[i] = list->base[i + 1];
+	}
+	list->size--;
+}
+
+
+//按值删除
+void delete_val(SeqList* list, ElemType x)
+{
+	int pos = find(list, x);
+	if (pos == -1)
+	{
+		printf("要删除的数据不存在\n");
+	}
+	else
+	{
+		delete_pos(list, pos);
+	}
+}
+
+
+//排序
+void sort(SeqList* list)
+{
+	for (int i = 0; i < list->size - 1; i++)
+	{
+		for (int j = 0; j < list->size - 1 - i; j++)
+		{
+			if (list->base[j] > list->base[j + 1]);
+			{
+				ElemType tmp = list->base[j];
+				list->base[j] = list->base[j + 1];
+				list->base[j + 1] = tmp;
+			}
+		}
+	}
+}
+
+
+//逆置顺序表
+void reverse(SeqList* list)
+{
+	if (list->size == 0 || list->size == 1)
+	{
+		return;
+	}
+	ElemType left = list->base[0];
+	ElemType right = list->base[list->size - 1];
+	while (left < right)
+	{
+		ElemType tmp = left;
+		left = right;
+		right = tmp;
+		left++;
+		right--;
+	}
+}
+
+
+//清除顺序表
+void clear(SeqList* list)
+{
+	list->size = 0;
+}
+
+
+//摧毁顺序表
+void destory(SeqList* list)
+{
+	free(list->base);
+	list->base = NULL;
+	list->capacity = 0;
+	list->size = 0;
+}
