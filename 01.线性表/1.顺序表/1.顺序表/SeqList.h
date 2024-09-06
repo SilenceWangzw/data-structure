@@ -1,61 +1,60 @@
 #pragma once
 #include<stdio.h>
-#include<malloc.h>
 #include<assert.h>
+#include<stdlib.h>
+
+typedef int SQDataType;
 
 
-#define MaxSize 10
-typedef int ElemType;
+
+////静态顺序表（固定大小）
+//#define MAX 10
+//typedef struct SeqList
+//{
+//	SQDataType data[MAX];
+//	int size;
+//}SeqList;
+
+
+
+
+//动态顺序表（大小可变）
 typedef struct SeqList
 {
-	ElemType* base;
-	int size;//目前的大小
+	SQDataType* data;
+	int size;//有效数据的个数
 	int capacity;//容量
 }SeqList;
 
 
 
+
 //初始化
-void InitSeqList(SeqList* list);
+void SeqListInit(SeqList* ps);
 
 //打印
-void show_list(SeqList* list);
+void SeqListPrint(SeqList* ps);
+
+//扩容
+void SeqListCheckCapacity(SeqList* ps);
 
 //尾插
-void push_back(SeqList* list, ElemType x);
-
-//头插
-void push_front(SeqList* list, ElemType x);
+void SeqListPushBack(SeqList* ps, SQDataType x);
 
 //尾删
-void pop_back(SeqList* list);
+void SeqListPopBack(SeqList* ps);
+
+//头插
+void SeqListPushFront(SeqList* ps, SQDataType x);
 
 //头删
-void pop_front(SeqList* list);
+void SeqListPopFront(SeqList* ps);
 
-//按位置插入（数组下标）
-void insert_pos(SeqList* list, int pos, ElemType x);
+//任意位置插入
+void SeqListInsert(SeqList* ps, int pos, SQDataType x);
 
-//查找
-int find(SeqList* list, ElemType x);
+//任意位置删除
+void SeqListErase(SeqList* ps, int pos);
 
-//求表长
-int length(SeqList* list);
-
-//按位置删除元素(数组下标)
-void delete_pos(SeqList* list, int pos);
-
-//按值删除
-void delete_val(SeqList* list, ElemType x);
-
-//排序
-void sort(SeqList* list);
-
-//逆置顺序表
-void reverse(SeqList* list);
-
-//清除顺序表
-void clear(SeqList* list);
-
-//摧毁顺序表
-void destory(SeqList* list);
+//查找元素所在位置
+int SeqListFind(SeqList* ps, SQDataType x);
