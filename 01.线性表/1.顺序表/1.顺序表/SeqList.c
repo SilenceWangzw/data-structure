@@ -22,6 +22,16 @@ void SeqListInit(SeqList* ps)
 }
 
 
+//销毁
+void SeqListDestory(SeqList* ps)
+{
+	free(ps->data);
+	ps->data = NULL;
+	ps->size = 0;
+	ps->capacity = 0;
+}
+
+
 //打印
 void SeqListPrint(SeqList* ps)
 {
@@ -105,4 +115,54 @@ void SeqListPopFront(SeqList* ps)
 		start++;
 	}
 	ps->size--;
+}
+
+
+//任意位置插入(下标)
+void SeqListInsert(SeqList* ps, int pos, SQDataType x)
+{
+	assert(ps);
+	assert(pos <= ps->size && pos >= 0);
+
+	SeqListCheckCapacity(ps);
+
+	int end = ps->size - 1;
+	while (end >= pos)
+	{
+		ps->data[end + 1] = ps->data[end];
+		end--;
+	}
+	ps->data[pos] = x;
+	ps->size++;
+}
+
+
+//任意位置删除
+void SeqListErase(SeqList* ps, int pos)
+{
+	assert(ps);
+	assert(pos >= 0 && pos < ps->size);
+
+	int start = pos;
+	while (start < ps->size - 1)
+	{
+		ps->data[start] = ps->data[start + 1];
+		start++;
+	}
+	ps->size--;
+}
+
+
+//查找元素所在位置（返回下标）
+int SeqListFind(SeqList* ps, SQDataType x)
+{
+	assert(ps);
+	for (int i = 0; i < ps->size; i++)
+	{
+		if (ps->data[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
