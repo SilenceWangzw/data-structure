@@ -1,40 +1,33 @@
 #pragma once
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 
-
-typedef int ElemType;
+typedef int ListDataType;
 typedef struct LNode
 {
-	ElemType data;//数据域
+	ListDataType data;//数据域
 	struct LNode* next;//指针域
 }LNode, LinkList;
 
 
+//打印链表
+void ListPrint(LinkList* phead);
 
 //申请结点
-LNode* BuyNode(ElemType x);
-
-//打印链表
-void SlistPrint(LinkList* phead);
+LNode* BuyListNode(ListDataType x);
 
 //尾插
-void SlistPushBack(LinkList** phead, ElemType x);
-
-//头插
-void SlistPushFront(LinkList** phead, ElemType x);
-
-//头删
-void SlistPopFront(LinkList** phead);
+void ListPushBack(LinkList** pphead, ListDataType x);
 
 //尾删
-void SlistPopBack(LinkList** phead);
+void ListPopBack(LinkList** pphead);
 
-//查找
-LNode* SlistFind(LinkList* phead, ElemType x);
+//头插
+void ListPushFront(LinkList** pphead, ListDataType x);
 
-//在pos前的位置插入
-void SlistInsert(LinkList** phead, LNode* pos, ElemType x);
+//头删
+void ListPopFront(LinkList** pphead);
 
-//在pos位置删除
-void SlistErase(LinkList** phead, LNode* pos);
+//查找元素
+LNode* ListFind(LinkList* pphead, ListDataType x);

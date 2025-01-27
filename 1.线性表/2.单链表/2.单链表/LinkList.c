@@ -2,18 +2,8 @@
 #include"LinkList.h"
 
 
-//申请结点
-LNode* BuyNode(ElemType x)
-{
-	LNode* newnode = (LNode*)malloc(sizeof(ElemType));
-	newnode->data = x;
-	newnode->next = NULL;
-	return newnode;
-}
-
-
 //打印链表
-void SlistPrint(LinkList* phead)
+void ListPrint(LinkList* phead)
 {
 	LNode* cur = phead;
 	while (cur != NULL)
@@ -25,86 +15,126 @@ void SlistPrint(LinkList* phead)
 }
 
 
+//申请结点
+LNode* BuyListNode(ListDataType x)
+{
+	LNode* newNode = (LNode*)malloc(sizeof(LNode));
+	if (newNode == NULL)
+	{
+		printf("申请结点失败\n");
+		return;
+	}
+	newNode->data = x;
+	newNode->next = NULL;
+
+	return newNode;
+}
+
+
 //尾插
-void SlistPushBack(LinkList** phead, ElemType x)
+void ListPushBack(LinkList** pphead, ListDataType x)
 {
 	//申请结点
-	LNode* newnode = BuyNode(x);
+	LNode* newNode = BuyListNode(x);
 
-	//表为空
-	if (*phead == NULL)
+	if (*pphead == NULL)
 	{
-		*phead = newnode;
+		*pphead = newNode;
 	}
 	else
 	{
-		LNode* tail = *phead;
-		//找尾结点
+		//找到尾结点
+		LNode* tail = *pphead;
 		while (tail->next != NULL)
 		{
 			tail = tail->next;
 		}
 
-		//将元素插入尾部
-		tail->next = newnode;
+		//插入元素
+		tail->next = newNode;
+	}
+}
+
+
+//尾删
+void ListPopBack(LinkList** pphead)
+{
+	//1.链表为空
+	if (*pphead == NULL)
+	{
+		return;
+	}
+	//2.只有一个数据
+	else if ((*pphead)->next == NULL)
+	{
+		free(*pphead);
+		*pphead = NULL;
+	}
+	//3.多个数据
+	else
+	{
+		LNode* tail = *pphead;//找尾结点
+		LNode* prev = NULL;//保留尾结点之前的一个结点
+		while (tail->next != NULL)
+		{
+			prev = tail;
+			tail = tail->next;
+		}
+		free(tail);
+		prev->next = NULL;
 	}
 }
 
 
 //头插
-void SlistPushFront(LinkList** phead, ElemType x)
+void ListPushFront(LinkList** pphead, ListDataType x)
 {
 	//申请结点
-	LNode* newnode = BuyNode(x);
+	LNode* newNode = BuyListNode(x);
 
-	newnode->next = *phead;
-	*phead = newnode;
+	//插入数据
+	//1.链表为空
+	if (*pphead == NULL)
+	{
+		*pphead = newNode;
+	}
+	//2.链表不为空
+	else
+	{
+		newNode->next = *pphead;
+		*pphead = newNode;
+	}
+	
 }
 
 
 //头删
-void SlistPopFront(LinkList** phead)
+void ListPopFront(LinkList** pphead)
 {
-	LNode* next = (*phead)->next;//保存下一个结点的地址
-	free(*phead);//释放第一个结点
-	*phead = next;
-}
-
-
-//尾删
-void SlistPopBack(LinkList** phead)
-{
-	//1.如果链表为空
-	if (*phead == NULL)
+	//1.链表为空
+	if (*pphead == NULL)
 	{
 		return;
 	}
-	//2.只有一个结点
-	else if ((*phead)->next == NULL)
+	//2.一个数据
+	else if ((*pphead)->next == NULL)
 	{
-		free(*phead);
-		*phead = NULL;
+		free(*pphead);
+		*pphead = NULL;
 	}
-	//3.多个结点
+	//3.多个数据
 	else
 	{
-		LNode* tail = *phead;
-		LNode* prev = *phead;
-		while (tail->next != NULL)
-		{
-			prev = tail;//保存尾结点的前一个结点地址
-			tail = tail->next;
-		}
-		free(tail);
-		prev->next = NULL;//将前一个结点的指针域置为空
+		LNode* q = (*pphead)->next;//保存第一个结点的下一个结点地址
+		*pphead = q;
 	}
 }
 
 
-//查找
-LNode* SlistFind(LinkList* phead, ElemType x)
+//查找元素
+LNode* ListFind(LinkList* pphead, ListDataType x)
 {
-	LNode* cur = phead;
+	LNode* cur = pphead;
 	while (cur != NULL)
 	{
 		if (cur->data == x)
@@ -114,48 +144,4 @@ LNode* SlistFind(LinkList* phead, ElemType x)
 		cur = cur->next;
 	}
 	return NULL;
-}
-
-
-//在pos结点前面插入
-void SlistInsert(LinkList** phead, LNode* pos, ElemType x)
-{
-	if (pos == *phead)
-	{
-		SlistPushFront(phead, x);
-	}
-	else
-	{
-		LNode* prev = *phead;
-		//找到插入位置的前一个结点
-		while (prev->next != pos)
-		{
-			prev = prev->next;
-		}
-
-		LNode* newnode = BuyNode(x);
-		prev->next = newnode;
-		newnode->next = pos;
-	}
-}
-
-
-//在pos位置删除
-void SlistErase(LinkList** phead, LNode* pos)
-{
-	if (pos == *phead)
-	{
-		SlistPopFront(phead);
-	}
-	else
-	{
-		LNode* prev = *phead;
-		while (prev->next != pos)
-		{
-			prev = prev->next;
-		}
-
-		prev->next = pos->next;
-		free(pos);
-	}
 }

@@ -1,33 +1,48 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"LinkList.h"
 
-
 int main()
 {
 	LinkList* plist = NULL;//定义头指针
 
-	SlistPushBack(&plist, 1);
-	SlistPushBack(&plist, 2);
-	SlistPushBack(&plist, 3);
-	SlistPushBack(&plist, 4);
-	SlistPrint(plist);
+	//尾插
+	//ListPushBack(&plist, 4);
+	//ListPushBack(&plist, 3);
+	//ListPushBack(&plist, 2);
+	//ListPushBack(&plist, 1);
+	//ListPrint(plist);
 
+	////尾删
+	//ListPopBack(&plist);
+	//ListPopBack(&plist);
+	//ListPopBack(&plist);
+	//ListPopBack(&plist);
+	//ListPrint(plist);
 
-	////在1的前面插入10
-	//LNode* pos = SlistFind(plist, 1);
-	//if (pos)
-	//{
-	//	SlistInsert(&plist, pos, 10);
-	//}
-	//SlistPrint(plist);
+	//头插
+	ListPushFront(&plist, 1);
+	ListPushFront(&plist, 2);
+	ListPushFront(&plist, 3);
+	ListPushFront(&plist, 4);
+	ListPrint(plist);
 
+	//头删
+	//ListPopFront(&plist);
+	//ListPopFront(&plist);
+	//ListPopFront(&plist);
+	//ListPopFront(&plist);
+	//ListPrint(plist);
 
-	//删除3的位置
-	LNode* pos = SlistFind(plist, 1);
-	if (pos)
+	//查找元素
+	LNode* ret = ListFind(plist, 1);
+	if (ret != NULL)
 	{
-		SlistErase(&plist, pos);
+		printf("查找成功\n");
 	}
-	SlistPrint(plist);
+	else
+	{
+		printf("查找失败\n");
+	}
+
 	return 0;
 }
