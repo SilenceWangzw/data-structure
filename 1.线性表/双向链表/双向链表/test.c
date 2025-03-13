@@ -3,7 +3,7 @@
 
 int main()
 {
-	DuLinkList* plist = ListInit();//定义头指针，指向头结点
+	DLinkList* plist = ListInit();
 
 	////尾插
 	//ListPushBack(plist, 1);
@@ -14,22 +14,17 @@ int main()
 
 	////尾删
 	//ListPopBack(plist);
-	//ListPopBack(plist);
-	//ListPopBack(plist);
-	//ListPopBack(plist);
 	//ListPrint(plist);
 
 
 	////头插
-	//ListPushFront(plist, 4);
-	//ListPushFront(plist, 3);
-	//ListPushFront(plist, 2);
 	//ListPushFront(plist, 1);
+	//ListPushFront(plist, 2);
+	//ListPushFront(plist, 3);
+	//ListPushFront(plist, 4);
 	//ListPrint(plist);
 
 	////头删
-	//ListPopFront(plist);
-	//ListPopFront(plist);
 	//ListPopFront(plist);
 	//ListPopFront(plist);
 	//ListPrint(plist);
@@ -41,15 +36,14 @@ int main()
 	ListPushBack(plist, 3);
 	ListPushBack(plist, 4);
 	DLNode* pos = ListFind(plist, 3);
-	//在3之前插入30
-	ListInsert(pos, 30);
+	//在3之前插入300
+	ListInsert(pos, 300);
 	ListPrint(plist);
-	//删除3
+	//删除3这个数据
 	ListErase(pos);
 	ListPrint(plist);
 
 
-	//销毁
 	ListDestory(plist);
 
 	return 0;

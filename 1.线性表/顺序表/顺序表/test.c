@@ -55,7 +55,7 @@ int main()
 	SeqListPushBack(&L, 2);
 	SeqListPushBack(&L, 3);
 	SeqListPushBack(&L, 4);
-	int ret = SeqListFind(&L, 5);
+	int ret = SeqListFind(&L, 4);
 	if (ret >= 0)
 	{
 		printf("查找成功，元素下标为:%d\n", ret);

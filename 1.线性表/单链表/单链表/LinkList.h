@@ -1,6 +1,7 @@
 #pragma once
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 
 typedef int SListDataType;
 typedef struct SListNode
@@ -28,4 +29,11 @@ void SListPushFront(LinkList** phead, SListDataType x);
 //头删
 void SListPopFront(LinkList** phead);
 
+//查找
+SListNode* SListFind(LinkList* phead, SListDataType x);
 
+//在pos的前面插入x
+void SListInsert(LinkList** phead, SListNode* pos, SListDataType x);
+
+//删除pos位置的值
+void SListErase(LinkList** phead, SListNode* pos);
